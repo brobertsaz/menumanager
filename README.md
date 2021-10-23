@@ -39,8 +39,8 @@ Level 1: Basics
      Illustrate behavior via unit tests
 
 Level 2: Multiple Menus
-     Extend the object model to Restaurant , and allow Restaurants to have multiple
-     Menus
+     Extend the object model to Restaurant ,
+     and allow Restaurants to have multiple Menus
      MenuItem names should not be duplicated in the database MenuItem can be on multiple Menu s of a Restaurant
      Illustrate behavior via unit tests
 
