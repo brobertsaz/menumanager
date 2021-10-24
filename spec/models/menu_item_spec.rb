@@ -6,6 +6,13 @@ RSpec.describe MenuItem, type: :model do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:description) }
     it { should have_many :menu_menu_items }
+
+    it { should define_enum_for(:item_type).
+        with_values(
+           entree: 0, appetizer: 1, side: 2
+        ).backed_by_column_of_type(:integer) }
+    it { should allow_values(:entree, :appetizer, :side).for(:item_type) }
+
   end
 
   describe 'create' do

@@ -6,4 +6,6 @@ class MenuItem < ApplicationRecord
   validates :title, uniqueness: true
   validates :description, presence: true
   validates :price, presence: true
+
+  enum item_type: { entree: 0, appetizer: 1, side: 2 }
 end
