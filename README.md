@@ -41,7 +41,8 @@ Level 1: Basics
 Level 2: Multiple Menus
      Extend the object model to Restaurant ,
      and allow Restaurants to have multiple Menus
-     MenuItem names should not be duplicated in the database MenuItem can be on multiple Menu s of a Restaurant
+     MenuItem names should not be duplicated in the database
+     MenuItem can be on multiple Menus of a Restaurant
      Illustrate behavior via unit tests
 
 Level 3: Complex Menu Items
@@ -59,3 +60,36 @@ Level 4: Fred and Fran like Fish on Fridays
 
      Design and implement a prediction engine that predicts: The likelihood of a customer dining on a particular day What dish they are most likely to order
 
+
+class Restaurant < ApplicationRecord
+  has_many :menus
+end
+
+class Menu < ApplicationRecord
+  has_many :menu_items, through: :menu_menu_item
+  belongs_to :restaurant
+end
+
+class MenuItem < ApplicationRecord
+  has_many :menus, through: :menu_menu_item
+end
+
+class MenuMenuItems < ApplicationRecord
+  belongs_to :menu
+  belongs_to :menu_item
+end
+
+
+
+class CategoryProduct < ActiveRecord::Base
+  belongs_to :product
+  belongs_to :category
+end
+class Category < ActiveRecord::Base
+  has_many :category_products
+  has_many :products, through: :category_products
+end
+class Product < ActiveRecord::Base
+  has_many :category_products
+  has_many :categories, through: :category_products
+end
