@@ -1,6 +1,8 @@
 class MenuItem < ApplicationRecord
   has_many :menu_menu_items
   has_many :menus, through: :menu_menu_items
+  has_many :menu_item_orders
+  has_many :orders, through: :menu_item_orders
 
   validates :title, presence: true
   validates :title, uniqueness: true

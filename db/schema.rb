@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_24_201855) do
+ActiveRecord::Schema.define(version: 2021_10_24_210118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 2021_10_24_201855) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_diners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_diners_on_reset_password_token", unique: true
+  end
+
+  create_table "menu_item_orders", force: :cascade do |t|
+    t.bigint "menu_item_id", null: false
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_item_id"], name: "index_menu_item_orders_on_menu_item_id"
+    t.index ["order_id"], name: "index_menu_item_orders_on_order_id"
   end
 
   create_table "menu_items", force: :cascade do |t|
@@ -83,5 +92,7 @@ ActiveRecord::Schema.define(version: 2021_10_24_201855) do
 
   add_foreign_key "diner_orders", "diners"
   add_foreign_key "diner_orders", "orders"
+  add_foreign_key "menu_item_orders", "menu_items"
+  add_foreign_key "menu_item_orders", "orders"
   add_foreign_key "orders", "diners"
 end
