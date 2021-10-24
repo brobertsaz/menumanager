@@ -53,6 +53,21 @@ RSpec.describe MenuItem, type: :model do
       expect(menu.menu_items.include? menu_item).to eq true
       expect(menu2.menu_items.include? menu_item).to eq true
     end
+
+    it 'allows item to be entree' do
+      expect(MenuItem.create(title: 'Steak',
+                             description: "Yummy",
+                             price: 19.99,
+                             item_type: "entree").save).to be true
+    end
+
+    it 'allows item to be side' do
+      expect(MenuItem.create(title: 'Steak',
+                        description: "Yummy",
+                        price: 19.99,
+                        item_type: "side").save).to be true
+
+    end
   end
 end
 
