@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_24_192235) do
+ActiveRecord::Schema.define(version: 2021_10_24_200142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "diner_orders", force: :cascade do |t|
+    t.bigint "diner_id", null: false
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["diner_id"], name: "index_diner_orders_on_diner_id"
+    t.index ["order_id"], name: "index_diner_orders_on_order_id"
+  end
+
+  create_table "diners", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_diners_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_diners_on_reset_password_token", unique: true
+  end
 
   create_table "menu_items", force: :cascade do |t|
     t.string "title"
@@ -37,10 +66,21 @@ ActiveRecord::Schema.define(version: 2021_10_24_192235) do
     t.integer "restaurant_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.bigint "diner_id", null: false
+    t.decimal "total", precision: 8, scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["diner_id"], name: "index_orders_on_diner_id"
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "diner_orders", "diners"
+  add_foreign_key "diner_orders", "orders"
+  add_foreign_key "orders", "diners"
 end
