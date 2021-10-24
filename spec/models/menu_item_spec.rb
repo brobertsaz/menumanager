@@ -22,28 +22,32 @@ RSpec.describe MenuItem, type: :model do
 
     it 'creates with required fields' do
       expect(menu.menu_items.create(title: 'Burger',
+                                    item_type: 0,
                                     description: "Delicious Cheeseburger",
                                     price: 9.99).save).to eq true
     end
 
     it 'requires unique name' do
       expect(menu.menu_items.create(title: "Grilled Burger",
+                                    item_type: 0,
                                     description: "Delicious Cheeseburger",
                                     price: 9.99).save).to eq true
 
 
       expect(menu.menu_items.create(title: "Grilled Burger",
                                     description: "Delicious Cheeseburger",
+                                    item_type: 0,
                                     price: 9.99).save).to eq false
 
 
       expect(menu.menu_items.create(title: "CheeseBurger",
                                     description: "Delicious Cheeseburger",
+                                    item_type: 0,
                                     price: 9.99).save).to eq true
     end
 
     it 'can be on mutiple menus for restaurant' do
-      menu_item = MenuItem.create(title: 'Steak', description: "Yummy", price: 19.99)
+      menu_item = MenuItem.create(title: 'Steak', description: "Yummy", price: 19.99, item_type: 0)
       menu.menu_items << menu_item
       menu2.menu_items << menu_item
       expect(menu.menu_items.include? menu_item).to eq true

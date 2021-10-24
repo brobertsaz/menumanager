@@ -8,4 +8,5 @@ class MenuItem < ApplicationRecord
   validates :price, presence: true
 
   enum item_type: { entree: 0, appetizer: 1, side: 2 }
+  validates :item_type, inclusion: { in: item_types.keys }
 end
