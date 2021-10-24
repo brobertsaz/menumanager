@@ -66,30 +66,17 @@ class Restaurant < ApplicationRecord
 end
 
 class Menu < ApplicationRecord
+  has_many :menu_menu_items
   has_many :menu_items, through: :menu_menu_item
   belongs_to :restaurant
 end
 
 class MenuItem < ApplicationRecord
+  has_many :menu_menu_items
   has_many :menus, through: :menu_menu_item
 end
 
 class MenuMenuItems < ApplicationRecord
   belongs_to :menu
   belongs_to :menu_item
-end
-
-
-
-class CategoryProduct < ActiveRecord::Base
-  belongs_to :product
-  belongs_to :category
-end
-class Category < ActiveRecord::Base
-  has_many :category_products
-  has_many :products, through: :category_products
-end
-class Product < ActiveRecord::Base
-  has_many :category_products
-  has_many :categories, through: :category_products
 end

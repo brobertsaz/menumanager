@@ -1,7 +1,7 @@
 class MenuItem < ApplicationRecord
-  # belongs_to :menu
-  belongs_to :restaurant
-  validates :menu_id, presence: true
+  has_many :menu_menu_items
+  has_many :menus, through: :menu_menu_items
+
   validates :title, presence: true
   validates :title, uniqueness: true
   validates :description, presence: true
