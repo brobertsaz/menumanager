@@ -1,25 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project Notes:
+  - This was not fully completed
+  - Only models and unit specs were used
+  - Used Rspec for testing 
+  - There are 3 branches; main for Level 1, level-2 and level-3
 
-Things you may want to cover:
+TODO:
+  - implement FactroyBot and Faker gem
+  - implement controllers based on the expected front end (Rails views or JSON)
 
-* Ruby version
 
-* System dependencies
+TO RUN
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+- cd into project
+- install ruby 3.0.1
+- bundle
+- rake db:create db:migrate db:test:prepare
+- run specs 
+  - rspec spec
 
 ### Menu Management Backend
 
@@ -46,11 +45,9 @@ Level 2: Multiple Menus
 
 Level 3: Complex Menu Items
      Extend the object model to enable the following behavior:
-
      A diner can order a dinner salad one of two ways:
        As a standalone dish, with selection of dressing
        As a side of an entree, with selection of dressing
-
      A diner can order a side of any dressing with any appetizer or entree
      Illustrate this behavior with unit tests
 
